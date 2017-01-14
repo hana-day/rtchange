@@ -13,7 +13,7 @@ An implementation of real-time change-point detection in time series.
 
 The required dependencies to use rtchange are
 
-- Python >= 3.3
+- Python >= 3.2
 - NumPy
 
 
@@ -46,5 +46,5 @@ $ pip install -U rtchange
 ```
 $ pip install -U pip
 $ pip install -e .[testing]
-$ make
+$ make test
 ```
