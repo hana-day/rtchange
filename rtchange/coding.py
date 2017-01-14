@@ -36,36 +36,36 @@ class SDNML(object):
             self._stats['prev_tau'] = self._stats['tau']
             self._stats['tau'] = tau
 
-    def length(self, X):
+    def length(self, x):
         """Calculate SDNML code-length.
 
         Parameters
         ----------
-        X : array-like, shape (n_samples, n_features)
-            Feature matrix of individual samples.
+        x : shape (1, n_features)
+            Feature matrix of the sample.
 
         Returns
         -------
-        lengths : iterator, shape (n_samples, )
-            Iterator of code lengths of the individuale samples.
+        code_length : float
+            Code length of the sample.
         """
-        for x in X:
-            x = np.atleast_2d(x).T
-            self._update_stats(x)
-            if self._time <= self.order+1:
-                yield 0
-            else:
-                code_length = (math.log(math.pi)/2) \
-                              - math.log(1-self._stats['d'])
-                code_length += math.log(
-                    math.gamma((self._time-self.order-1)/2)
-                )
-                code_length -= math.log(math.gamma((self._time-self.order)/2))
-                code_length += (math.log(self._time-self.order-1) +
-                                math.log(self._stats['prev_tau']))/2
-                code_length += (self._time-self.order)/2 * (
-                    math.log((self._time-self.order)*self._stats['tau']) -
-                    math.log((self._time-self.order-1)*self._stats['prev_tau'])
-                )
-                yield code_length
-            self._time += 1
+        x = np.atleast_2d(x).T
+        self._update_stats(x)
+        code_length = 0
+        if self._time <= self.order+1:
+            code_length = 0
+        else:
+            code_length = (math.log(math.pi)/2) \
+                          - math.log(1-self._stats['d'])
+            code_length += math.log(
+                math.gamma((self._time-self.order-1)/2)
+            )
+            code_length -= math.log(math.gamma((self._time-self.order)/2))
+            code_length += (math.log(self._time-self.order-1) +
+                            math.log(self._stats['prev_tau']))/2
+            code_length += (self._time-self.order)/2 * (
+                math.log((self._time-self.order)*self._stats['tau']) -
+                math.log((self._time-self.order-1)*self._stats['prev_tau'])
+            )
+        self._time += 1
+        return code_length
