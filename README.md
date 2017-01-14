@@ -6,8 +6,7 @@ An implementation of real-time change-point detection in time series.
 
 
 ## Sample
-
-![](images/changepoint_jumping_means.png)
+<img src="images/changepoint_jumping_means.png" width="600px">
 
 
 ## Dependencies
