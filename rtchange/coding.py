@@ -1,9 +1,17 @@
+import abc
 import math
 
 import numpy as np
 
 
-class SDNML(object):
+class CodeLength(metaclass=abc.ABCMeta):
+
+    @abc.abstractmethod
+    def length(self, x):
+        pass
+
+
+class SDNML(CodeLength):
     def __init__(self, discounting_param=0.1, order=2):
         self.discounting_param = discounting_param
         self.order = order
@@ -57,10 +65,8 @@ class SDNML(object):
         else:
             code_length = (math.log(math.pi)/2) \
                           - math.log(1-self._stats['d'])
-            code_length += math.log(
-                math.gamma((self._time-self.order-1)/2)
-            )
-            code_length -= math.log(math.gamma((self._time-self.order)/2))
+            code_length += math.lgamma((self._time-self.order-1)/2)
+            code_length -= math.lgamma((self._time-self.order)/2)
             code_length += (math.log(self._time-self.order-1) +
                             math.log(self._stats['prev_tau']))/2
             code_length += (self._time-self.order)/2 * (
