@@ -44,6 +44,8 @@ $ pip install -U rtchange
 ## Testing
 
 ```
+$ virtualenv venv
+$ source ./venv/bin/activate
 $ pip install -U pip
 $ pip install -e .[testing]
 $ make test
