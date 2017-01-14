@@ -1,7 +1,7 @@
 import os
 import sys
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 py_version = sys.version_info[:2]
 
@@ -27,7 +27,7 @@ tests_require = [
 
 setup(
     name='rtchange',
-    version='0.0.1',
+    version='0.1.0',
     description='Real-time change point detection',
     long_description=README,
     classifiers=[
@@ -44,9 +44,7 @@ setup(
     author="Yusuke Hanada",
     author_email="hyusuk9872@gmail.com",
     license="The MIT License (https://opensource.org/licenses/MIT)",
-    packages=find_packages(),
-    include_package_data=True,
-    zip_safe=False,
+    packages=["rtchange", "rtchange.tests"],
     install_requires=install_requires,
     extras_require={
         "testing": tests_require,
