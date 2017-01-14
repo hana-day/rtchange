@@ -1,4 +1,4 @@
-rtchange
+rtchange    [![Build Status](https://travis-ci.org/hyusuk/rtchange.svg?branch=master)](https://travis-ci.org/hyusuk/rtchange)
 ========
 
 An implementation of real-time change-point detection in time series.
