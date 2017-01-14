@@ -5,10 +5,9 @@ from setuptools import setup, find_packages
 
 py_version = sys.version_info[:2]
 
-PY2 = py_version[0] == 2
 
-if PY2:
-    raise RuntimeError('On Python 2, rtchange requires Python 3.x')
+if py_version < (3, 3):
+    raise RuntimeError('On Python 2, rtchange requires Python 3.3 or higher')
 
 here = os.path.abspath(os.path.dirname(__file__))
 try:
