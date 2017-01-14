@@ -5,11 +5,25 @@ An implementation of real-time change-point detection in time series.
 (See [this paper](http://dl.acm.org/citation.cfm?id=2022866))
 
 
+## Sample
+
+![](images/changepoint_jumping_means.png)
+
+
+## Dependencies
+
+The required dependencies to use rtchange are
+
+- Python >= 3.3
+- NumPy
+
+
 ## Installtion
 
 ```
 $ pip install -U rtchange
 ```
+
 
 ## Example
 
