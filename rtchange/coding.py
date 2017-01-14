@@ -12,7 +12,7 @@ class CodeLength(metaclass=abc.ABCMeta):
 
 
 def zero2small(v, small=1e-5):
-    return v if v > small else small
+    return v if v > 0 else small
 
 
 class SDNML(CodeLength):
@@ -71,8 +71,8 @@ class SDNML(CodeLength):
         if self._time > 1:
             code_length = (math.log(math.pi)/2) \
                           - math.log(zero2small(1-self._stats['d']))
-            code_length += math.lgamma((self._time-1)/2)
-            code_length -= math.lgamma((self._time)/2)
+            code_length -= math.lgamma((self._time-1)/2)
+            code_length += math.lgamma((self._time)/2)
             code_length += (math.log(self._time-1) +
                             math.log(zero2small(self._stats['prev_tau'])))/2
             code_length += (self._time)/2 * (
