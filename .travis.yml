@@ -11,7 +11,7 @@ python:
   - "nightly"
 install:
   - pip install -U pip
-  - pip install .[testing]
+  - pip install -e .[testing]
 script: make test
 matrix:
     fast_finish: true
