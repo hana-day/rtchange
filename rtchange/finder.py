@@ -2,7 +2,7 @@ from .coding import SDNML
 
 
 class Finder(object):
-    def __init__(self, discounting_param=0.1, order=2, smoothing=4,
+    def __init__(self, discounting_param=0.1, order=2, smoothing=10,
                  code_length_class='sdnml'):
         self.discounting_param = discounting_param
         self.order = order
@@ -25,8 +25,8 @@ class Finder(object):
 
         Parameters
         ----------
-        x : shape (1, n_features)
-            Feature matrix of the sample.
+        x : float
+            The sample you want to calculate the change score.
 
         Returns
         -------
@@ -37,7 +37,8 @@ class Finder(object):
         self._first_score_queue.append(self.first_code_length.length(x))
         first_smoothed = sum(self._first_score_queue)/self.smoothing
         self._second_score_queue.pop(0)
-        self._second_score_queue.append(first_smoothed)
+        self._second_score_queue.append(
+            self.second_code_length.length(first_smoothed))
         score = sum(self._second_score_queue)/self.smoothing
         return score
 
@@ -46,8 +47,8 @@ class Finder(object):
 
         Parameters
         ----------
-        X : shape (n_samples, n_features)
-            Feature matrix of the individuale samples.
+        X : array-like, shape (1, n_samples)
+            Sequence of the samples.
 
         Returns
         -------
