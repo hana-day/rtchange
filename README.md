@@ -5,10 +5,6 @@ An implementation of real-time change-point detection in time series.
 (See [this paper](http://dl.acm.org/citation.cfm?id=2022866))
 
 
-## Sample
-<img src="images/changepoint_jumping_means.png" width="600px">
-
-
 ## Dependencies
 
 The required dependencies to use rtchange are
@@ -40,6 +36,15 @@ $ pip install -U rtchange
 >>> f.score_one(2)
 1.4303444070633553
 ```
+
+
+## Samples
+### Jumping means
+<img src="images/changepoint_jumping_means.png" width="600px">
+
+### TOYOTA stock prices
+<img src="images/changepoint_toyota_stock_prices.png" width="600px">
+
 
 ## Testing
 
